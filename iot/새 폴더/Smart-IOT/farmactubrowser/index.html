@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Smart Farm actuator control</title>
+        <meta name="viewport" content="width=200, initial-scale=1, maximum-scale=1">
+    </head>
+    
+    <body>
+    <p style="text-align:center; clear: none; float: none;">스마트 농장 액츄에이터 제어 실습</p>
+    	<div align="center" style="margin: 0 0 10px 10px">
+            <ul >
+                <input type="button" style=font-size:10pt;width:70;height:60; value="pump on" onClick="cmd('PUMPON')">
+				<input type="button" style=font-size:10pt;width:70;height:60; value="pump off" onClick="cmd('PUMPOFF')">
+            </ul>
+			<ul >
+                <input type="button" style=font-size:10pt;width:70;height:60; value="fan on" onClick="cmd('FANON')">
+				<input type="button" style=font-size:10pt;width:70;height:60; value="fan off" onClick="cmd('FANOFF')">
+            </ul>
+			
+			<ul >
+                <input type="button" style=font-size:10pt;width:70;height:60; value="motor on" onClick="cmd('MOTORON')">
+				<input type="button" style=font-size:10pt;width:70;height:60; value="motor off" onClick="cmd('MOTOROFF')">
+            </ul>
+			
+			<ul >
+                <input type="button" style=font-size:10pt;width:70;height:60; value="rgb led on" onClick="cmd('RGBON')">
+				<input type="button" style=font-size:10pt;width:70;height:60; value="rgb led off" onClick="cmd('RGBOFF')">
+            </ul>
+			
+
+        </div>
+        
+        <script type="text/javascript">
+            function cmd(value) {
+                if( window.XMLHttpRequest ) {
+                    request = new XMLHttpRequest();
+                }
+
+                if( !request ) {
+                    alert("XMLHttpRequest Error");	
+                    return false;
+                }
+                
+                var send = 'cmd=' + value;
+                request.open('POST','/rccar',true);
+
+                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                request.setRequestHeader('Content-Length', send.length);
+                request.setRequestHeader('Connection', 'close');
+                request.send(send);
+            }
+        </script>
+    </body>
+</html>
